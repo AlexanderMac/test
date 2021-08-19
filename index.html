@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>S3Gen Preview</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="/bootstrap.css" />
+  <style>
+    body {
+      margin: 20px 0;
+    }
+    .card {
+      margin-bottom: 30px;
+    }
+    table > tbody > tr > td:first-child {
+      min-width: 150px;
+    }
+  </style>
+</head>
+<body>
+  <div class=container-fluid>
+    <div class="row">
+      <div class="col-md-3 col-lg-2">
+        <label>Status Code</label>
+        <select id="statusFilter" class="form-select">
+          <option value="all" selected>All</option>
+          <option value="2xx">2xx</option>
+          <option value="3xx">3xx</option>
+          <option value="4xx">4xx</option>
+          <option value="5xx">5xx</option>
+          <option disabled>──────────</option>
+        </select>
+      </div>
+      <div class="col-md-3 col-lg-2">
+        <label>Cols per Page</label>
+        <select id="colsPerPage" class="form-select">
+          <option value="6">6</option>
+          <option value="4" selected>4</option>
+          <option value="3">3</option>
+        </select>
+      </div>
+      <div class="col-md-3 col-lg-2">
+        <label>Rows per Page</label>
+        <select id="rowsPerPage" class="form-select">
+          <option value="5">5</option>
+          <option value="4">4</option>
+          <option value="3">3</option>
+          <option value="2" selected>2</option>
+          <option value="1">1</option>
+        </select>
+      </div>
+      <div class="col-md-3 col-lg-6">
+        <label>Filter</label>
+        <input id="urlFilter" class="form-control" placeholder="Provide URL and press Enter" aria-describedby="filterByUrl">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <span class="text-secondary">SitePage count:</span>
+        <span id="sitePageCount" class="text-info"></span>
+      </div>
+      <div class="col">
+        <div class="form-check">
+          <input id="markedVisibility" class="form-check-input" type="checkbox" >
+          <label class="form-check-label" for="markedVisibility">Show makred only</label>
+        </div>
+      </div>
+    </div>
+    <hr>
+
+    <div id="s3Container" class="row"></div>
+
+    <div id="paginator" class="row">
+      <div class="col text-center">
+        <button id="prevPage" class="btn btn-light">Prev</button>
+        <strong id="pager" class="text-secondary mx-1">1</strong>
+        <button id="nextPage" class="btn btn-light">Next</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- sitePageDetails modal -->
+  <div id="sitePageDetailsModal" class="modal fade" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title"></h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <nav>
+            <div class="nav nav-tabs" role="tablist">
+              <button
+                id="nav-s2-tab"
+                class="nav-link active"
+                type="button"
+                role="tab"
+                data-bs-toggle="tab"
+                data-bs-target="#nav-s2"
+                aria-controls="nav-s2"
+                aria-selected="true"
+              >Screenshot
+              </button>
+              <button
+                id="nav-headers-tab"
+                class="nav-link"
+                type="button"
+                role="tab"
+                data-bs-toggle="tab"
+                data-bs-target="#nav-headers"
+                aria-controls="nav-headers"
+                aria-selected="false"
+              >Headers
+              </button>
+            </div>
+          </nav>
+          <div class="tab-content">
+            <div class="tab-pane fade show active" id="nav-s2" role="tabpanel" aria-labelledby="nav-s2-tab"></div>
+            <div class="tab-pane fade" id="nav-headers" role="tabpanel" aria-labelledby="nav-headers-tab"></div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/bootstrap.js"></script>
+  <script src="/index.js"></script>
+</body>
+</html>
